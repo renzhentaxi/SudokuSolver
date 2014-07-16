@@ -26,9 +26,9 @@ public class Grid
     {
         Grid subGrid = new Grid(width, height);
         int x2 = x + width;
-        int y2 = y + height;
         for (;x < x2; x += 1)
-        {
+        {   
+            int y2 = y + height;
             for(; y < y2; y += 1)
             {
                 subGrid.set(x,y,get(x,y));
