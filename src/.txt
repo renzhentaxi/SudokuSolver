@@ -1,0 +1,9 @@
+class named Groups
+contains an array of an array of integers
+contains a function: simplify
+iterator()
+
+Board
+Row
+Column
+Rectangles
