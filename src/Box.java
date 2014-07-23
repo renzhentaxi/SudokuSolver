@@ -13,10 +13,14 @@ public class Box
         values.add(value);
     }
 
-    public boolean remove(int value)
+    public void remove(int value)
     {
-        values.remove(value);
-        return filled();
+        int index = values.indexOf(value);
+        System.out.println(index);
+        if( index != -1)
+        {
+            values.remove(values.indexOf(value));
+        }
     }
 
     public boolean filled()
@@ -31,7 +35,7 @@ public class Box
 
     public String toString()
     {
-        return "x: " + x + " y: " + y;
+        return "x: " + x + " y: " + y + " Value: " + value();
     }
     public Box(int x, int y)
     {

@@ -34,17 +34,23 @@ public class Sudoku extends JPanel
         Box b = board.get(new Point(x,y));
         b.set(value);
         repaint();
-        System.out.println(getAffected(currentX, currentY));
-        System.out.println(getAffected(currentX,currentY).size());
-        solve(x, y, value);
+        solve(x,y);
     }
 
-    public void solve(int x, int y,int value)
+    public void solve( int x, int y)
     {
-       ArrayList<Box> affected = getAffected(x,y);
+        int value = board.get(new Point(x,y)).value();
+        ArrayList<Box> affected = getAffected(x,y);
+        for( Box b : affected)
+        {
+            b.remove(value);
+            if (b.filled())
+            {
+                solve(b.x,b.y);
+            }
+        }
 
     }
-
     public HashMap<Point,Box> getNotFilled()
     {
         HashMap<Point,Box> bs = new HashMap<Point,Box>();
@@ -62,6 +68,22 @@ public class Sudoku extends JPanel
         return bs;
     }
 
+    public ArrayList<Box> getFilled()
+    {
+        ArrayList<Box> bs = new ArrayList<Box>();
+        for(int x = 0; x < 9; x++)
+        {
+            for(int y = 0; y < 9; y++)
+            {
+                Box b = board.get(new Point(x,y));
+                if (b.filled())
+                {
+                    bs.add(b);
+                }
+            }
+        }
+        return bs;
+    }
     public ArrayList<Box> getAffected(int x, int y)
     {
         HashMap<Point,Box> notFilled = getNotFilled();
@@ -109,6 +131,7 @@ public class Sudoku extends JPanel
                 }
             }
         }
+
     }
     public static void main(String[] args)
     {
